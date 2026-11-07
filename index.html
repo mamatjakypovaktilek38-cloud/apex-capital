@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Apex Capital: Oligarch Tycoon</title>
+  
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Apex Capital">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Шапка -->
+    <header class="header">
+      <div class="top-row">
+        <div class="brand">
+          <span class="gold-dot"></span>
+          <span class="brand-title">APEX CAPITAL</span>
+        </div>
+        <div class="top-actions">
+          <button id="btn-sound" class="btn-sound" title="Звук">🔊</button>
+          <select id="lang-select">
+            <option value="ru">RU</option>
+            <option value="kg">KG</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Новостная лента -->
+      <div class="news-ticker" id="news-ticker">
+        <span class="news-tag" data-i18n="news_label">НОВОСТИ</span>
+        <span class="news-text" id="news-text">Рынок стабилен. Инвесторы ищут новые возможности.</span>
+      </div>
+
+      <!-- Ранг (10 ступеней) -->
+      <div class="rank-card">
+        <div class="rank-info">
+          <span class="rank-name" id="rank-name">Начинающий предприниматель</span>
+          <span class="rank-step" id="rank-step">1 / 10</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="rank-bar"></div>
+        </div>
+        <div class="rank-next" id="rank-next">Цель: Малый бизнесмен ($1,000)</div>
+      </div>
+
+      <!-- Баланс -->
+      <div class="balance-box">
+        <div class="balance-sub" data-i18n="balance_label">Свободный капитал</div>
+        <div class="balance-main" id="balance-val">$0</div>
+        <div class="income-sub">
+          <span data-i18n="income_label">Доход</span>: 
+          <span class="green-text" id="income-val">+$0 / сек</span>
+        </div>
+      </div>
+      <div class="net-worth-line">
+        <span data-i18n="net_worth_label">Общий капитал</span>: <strong id="net-worth-val">$0</strong>
+      </div>
+    </header>
+
+    <!-- Контент -->
+    <main class="content">
+      <!-- 1. Главная (Кликер) -->
+      <section id="tab-main" class="tab-pane active">
+        <div class="deal-area" id="deal-area">
+          <button id="btn-deal" class="gold-button">
+            <span class="deal-icon">💼</span>
+            <div class="deal-texts">
+              <span class="deal-head" data-i18n="btn_deal">Заключить сделку</span>
+              <span class="deal-payout" id="click-payout">+$1</span>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- 2. Бизнес (8 отраслей) -->
+      <section id="tab-businesses" class="tab-pane">
+        <div class="pane-header">
+          <h2 data-i18n="biz_title">Предприятия</h2>
+          <span class="pane-desc" data-i18n="biz_desc">8 ключевых отраслей экономики</span>
+        </div>
+        <div id="business-list" class="cards-container"></div>
+      </section>
+
+      <!-- 3. Биржа с графиком -->
+      <section id="tab-stock" class="tab-pane">
+        <div class="pane-header">
+          <h2 data-i18n="stock_title">Фондовая биржа</h2>
+          <span class="pane-desc" data-i18n="stock_desc">Покупка акций и динамика рынка</span>
+        </div>
+        <div class="chart-box">
+          <div class="chart-info-row">
+            <div>
+              <div class="chart-symbol" id="chart-symbol">APEX Corp</div>
+              <div class="chart-cur-price" id="chart-price">$100.00</div>
+            </div>
+            <div class="chart-tag" id="chart-tag">+0.00%</div>
+          </div>
+          <canvas id="market-canvas" width="400" height="130"></canvas>
+        </div>
+        <div id="stock-list" class="cards-container"></div>
+      </section>
+
+      <!-- 4. Недвижимость -->
+      <section id="tab-re" class="tab-pane">
+        <div class="pane-header">
+          <h2 data-i18n="re_title">Недвижимость</h2>
+          <span class="pane-desc" data-i18n="re_desc">Небоскрёбы, отели и офисы</span>
+        </div>
+        <div id="re-list" class="cards-container"></div>
+      </section>
+
+      <!-- 5. Роскошная жизнь (Люкс) -->
+      <section id="tab-luxury" class="tab-pane">
+        <div class="pane-header">
+          <h2 data-i18n="lux_title">Роскошная жизнь</h2>
+          <span class="pane-desc" data-i18n="lux_desc">Суперкары, джеты, яхты и ассистенты</span>
+        </div>
+        <div id="luxury-list" class="cards-container"></div>
+      </section>
+
+      <!-- 6. Карта Империи -->
+      <section id="tab-map" class="tab-pane">
+        <div class="pane-header">
+          <h2 data-i18n="map_title">Карта Империи</h2>
+          <span class="pane-desc" data-i18n="map_desc">Глобальные штаб-квартиры и филиалы</span>
+        </div>
+
+        <div class="world-map-wrap">
+          <div class="world-map-canvas-container">
+            <canvas id="map-canvas" width="400" height="220"></canvas>
+          </div>
+        </div>
+
+        <div id="cities-list" class="cards-container"></div>
+      </section>
+    </main>
+
+    <!-- 6 Вкладок внизу -->
+    <nav class="bottom-bar">
+      <button class="nav-item active" data-tab="tab-main">
+        <span class="nav-ico">📊</span>
+        <span class="nav-lbl" data-i18n="nav_main">Главная</span>
+      </button>
+      <button class="nav-item" data-tab="tab-businesses">
+        <span class="nav-ico">🏢</span>
+        <span class="nav-lbl" data-i18n="nav_biz">Бизнес</span>
+      </button>
+      <button class="nav-item" data-tab="tab-stock">
+        <span class="nav-ico">📈</span>
+        <span class="nav-lbl" data-i18n="nav_stock">Биржа</span>
+      </button>
+      <button class="nav-item" data-tab="tab-re">
+        <span class="nav-ico">🏙️</span>
+        <span class="nav-lbl" data-i18n="nav_re">Мүлк</span>
+      </button>
+      <button class="nav-item" data-tab="tab-luxury">
+        <span class="nav-ico">💎</span>
+        <span class="nav-lbl" data-i18n="nav_lux">Люкс</span>
+      </button>
+      <button class="nav-item" data-tab="tab-map">
+        <span class="nav-ico">🗺️</span>
+        <span class="nav-lbl" data-i18n="nav_map">Карта</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

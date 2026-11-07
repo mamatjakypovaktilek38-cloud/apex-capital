@@ -1,0 +1,526 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: #040507;
+  color: #e2e8f0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 450px;
+  min-height: 100vh;
+  background-color: #0a0d14;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+  border-left: 1px solid #171f2e;
+  border-right: 1px solid #171f2e;
+}
+
+/* Шапка */
+.header {
+  padding: 16px;
+  background: linear-gradient(180deg, #101522 0%, #0a0d14 100%);
+  border-bottom: 1px solid #171f2e;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gold-dot {
+  width: 8px;
+  height: 8px;
+  background: #f59e0b;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #f59e0b;
+}
+
+.brand-title {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #94a3b8;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-sound {
+  background: #141b29;
+  border: 1px solid #28354d;
+  color: #f59e0b;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#lang-select {
+  background: #141b29;
+  color: #f59e0b;
+  border: 1px solid #28354d;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Новостная строка */
+.news-ticker {
+  background: #0f1626;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.news-tag {
+  background: #eab308;
+  color: #000;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.news-text {
+  font-size: 11px;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ранг игрока */
+.rank-card {
+  background: #0f1420;
+  border: 1px solid #1d263a;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.rank-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.rank-name {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.rank-step {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: #192133;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #d97706, #f59e0b);
+  transition: width 0.3s ease;
+}
+
+.rank-next {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* Баланс */
+.balance-box {
+  padding: 4px 0;
+}
+
+.balance-sub {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.balance-main {
+  font-size: 30px;
+  font-weight: 800;
+  color: #fbbf24;
+  text-shadow: 0 0 15px rgba(251, 191, 36, 0.25);
+  margin: 2px 0;
+}
+
+.income-sub {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.green-text {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.net-worth-line {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.net-worth-line strong {
+  color: #cbd5e1;
+}
+
+/* Контент */
+.content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  padding-bottom: 75px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* Кнопка сделки */
+.deal-area {
+  position: relative;
+  margin-top: 10px;
+}
+
+.gold-button {
+  width: 100%;
+  padding: 20px 16px;
+  background: linear-gradient(135deg, #171d2b 0%, #111520 100%);
+  border: 1px solid #b45309;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(180, 83, 9, 0.15);
+  transition: transform 0.08s ease;
+}
+
+.gold-button:active {
+  transform: scale(0.97);
+}
+
+.deal-icon {
+  font-size: 30px;
+  background: #241c10;
+  border: 1px solid #78350f;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.deal-texts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.deal-head {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.deal-payout {
+  color: #fbbf24;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.flying-number {
+  position: absolute;
+  color: #fbbf24;
+  font-size: 18px;
+  font-weight: 800;
+  pointer-events: none;
+  animation: flyUp 0.75s ease-out forwards;
+}
+
+@keyframes flyUp {
+  0% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -50px); }
+}
+
+/* Заголовки экранов */
+.pane-header {
+  margin-bottom: 12px;
+}
+
+.pane-header h2 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.pane-desc {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Карточки */
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  background: #0f1420;
+  border: 1px solid #1c2538;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-icon {
+  font-size: 24px;
+  background: #161c2c;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.card-yield {
+  font-size: 12px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+.card-cost {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+.btn-buy {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #040608;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-buy:disabled {
+  background: #192030;
+  color: #475569;
+  cursor: not-allowed;
+}
+
+/* График биржи */
+.chart-box {
+  background: #0f1420;
+  border: 1px solid #1c2538;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.chart-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.chart-symbol {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.chart-cur-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.chart-tag {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.chart-tag.up {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.chart-tag.down {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.12);
+}
+
+#market-canvas {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+
+/* Кнопки биржи */
+.stock-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-trade {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-trade.buy {
+  background: #10b981;
+  color: #03201a;
+}
+
+.btn-trade.sell {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.btn-trade:disabled {
+  background: #192030;
+  color: #475569;
+  cursor: not-allowed;
+}
+
+/* Карта Империи */
+.world-map-wrap {
+  background: #0f1420;
+  border: 1px solid #1c2538;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.world-map-canvas-container {
+  width: 100%;
+  position: relative;
+  background: radial-gradient(circle at center, #131b2e 0%, #0b0f17 100%);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #1e293b;
+}
+
+#map-canvas {
+  width: 100%;
+  height: 180px;
+  display: block;
+}
+
+/* 6 кнопок навигации */
+.bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #07090e;
+  border-top: 1px solid #161c2b;
+  display: flex;
+}
+
+.nav-item {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.nav-ico {
+  font-size: 14px;
+}
+
+.nav-lbl {
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.nav-item.active {
+  color: #fbbf24;
+}
